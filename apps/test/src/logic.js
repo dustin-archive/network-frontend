@@ -6,8 +6,14 @@ const state = {
   // stores
   Router: {},
 
+  // comments
+  clientID: null,
   comments: [
-    { comment: 'foobar', name: 'test' }
+    {
+      clientID: null,
+      comment: 'Welcome to the almost realtime comment system!',
+      name: 'Notice'
+    }
   ]
 }
 
@@ -16,14 +22,12 @@ const actions = {
   Router,
 
   appendComments: data => state => {
-    console.log('appendComments')
+    console.log(state.comments.concat(data.comments))
+
     return {
       comments: state.comments.concat(data.comments)
     }
   },
-  // postComment: data => (state, actions) => {
-  //   console.log('postComment')
-  // },
 
   // utilities
   update

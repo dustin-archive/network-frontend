@@ -19,14 +19,11 @@ const Comments = (state, actions) => {
 const Home = (state, actions) => {
   const onkeydown = e => {
     if (e.key === 'Enter') {
-      console.log('enter key', e.target.value)
-
-      const data = {
+      postComment({
+        clientID: state.clientID,
         comment: e.target.value,
-        name: 'whaaaley'
-      }
-
-      postComment(data)(actions)
+        name: state.clientName
+      })
     }
   }
 

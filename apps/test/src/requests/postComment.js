@@ -1,8 +1,9 @@
 
-const postComment = data => main => {
+const postComment = data => {
   const options = {
     method: 'POST',
     body: JSON.stringify({
+      clientID: data.clientID,
       comment: data.comment,
       name: data.name
     })
