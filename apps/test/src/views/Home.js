@@ -5,10 +5,11 @@ import postComment from '../requests/postComment'
 
 const Comments = (state, actions) => {
   const { comments } = state
+  const viewport = comments.slice(comments.length - 32)
   const result = []
 
-  for (let i = 0; i < comments.length; i++) {
-    const { comment, name } = comments[i]
+  for (let i = 0; i < viewport.length; i++) {
+    const { comment, name } = viewport[i]
     const item = div(name + ': ' + comment)
     result.push(item)
   }
@@ -45,9 +46,9 @@ const NameInput = (state, actions) => {
 const Home = (state, actions) => {
   return div({ class: 'home' }, [
     h1('Almost Realtime Comments'),
+    NameInput,
     Comments,
-    MessageInput,
-    NameInput
+    MessageInput
   ])
 }
 
