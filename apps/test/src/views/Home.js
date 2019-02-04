@@ -13,10 +13,10 @@ const Comments = (state, actions) => {
     result.push(item)
   }
 
-  return div(result)
+  return div({ class: 'home-comments' }, result)
 }
 
-const Home = (state, actions) => {
+const MessageInput = state => {
   const onkeydown = e => {
     if (e.key === 'Enter') {
       postComment({
@@ -24,13 +24,30 @@ const Home = (state, actions) => {
         comment: e.target.value,
         name: state.clientName
       })
+
+      e.target.value = ''
     }
   }
 
+  return input({ placeholder: 'Message', onkeydown, type: 'text' })
+}
+
+const NameInput = (state, actions) => {
+  const onkeyup = e => {
+    actions.update({
+      clientName: e.target.value
+    })
+  }
+
+  return input({ placeholder: 'Name', onkeyup, type: 'text' })
+}
+
+const Home = (state, actions) => {
   return div({ class: 'home' }, [
     h1('Almost Realtime Comments'),
     Comments,
-    input({ onkeydown, type: 'text' })
+    MessageInput,
+    NameInput
   ])
 }
 

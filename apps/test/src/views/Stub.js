@@ -8,6 +8,15 @@ import { h } from 'hyperapp'
 // 2. NOTE: lighthouse complains about maximum-scale=1 and user-scalable=0, but
 // we need these for a responsive scaling
 
+const preloadFont = href => {
+  const rel = 'preload'
+  const type = 'font/woff2'
+  const as = 'font'
+  const crossorigin = 'anonymous'
+
+  return h('link', { rel, type, href, as, crossorigin })
+}
+
 const Stub = data => {
   const title = 'Almost Realtime Comments'
   const author = 'Dustin Dowell'
@@ -31,6 +40,8 @@ const Stub = data => {
       h('meta', { name: 'keywords', content: keywords }),
       h('meta', { id: 'viewport', name: 'viewport' }),
       h('link', { rel: 'icon', type: 'image/png', href: 'favicon.png' }),
+      preloadFont('/googlefonts/roboto-v18-latin-regular.woff2'),
+      preloadFont('/googlefonts/robotocondensed-v16-latin-regular.woff2'),
       styles
     ]),
     h('body', {}, [

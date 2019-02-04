@@ -1,0 +1,67 @@
+
+//
+// # Fonts
+// =============================================================================
+
+@font-face {
+  font-family: 'Roboto';
+  src:
+  local('Roboto'),
+  local('Roboto-Regular'),
+  url('/googlefonts/roboto-v18-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src:
+  local('Roboto Condensed'),
+  local('Roboto-Condensed'),
+  url('/googlefonts/robotocondensed-v16-latin-regular.woff2') format('woff2');
+}
+
+//
+// # Reset
+// =============================================================================
+// 1. NOTE: Webkit iOS: enable momentum scrolling on overflow elements
+// 2. NOTE: Prevent tap delay on touch devices
+// 3. NOTE: Prevent mobile devices from scaling font size
+// 4. HACK: Safari: `position: fixed` sets `font-smoothing` to `antialiased`
+
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  -webkit-overflow-scrolling: touch; // 1
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+html {
+  touch-action: manipulation; // 2
+  -webkit-text-size-adjust: none; // 3
+}
+
+body {
+  color: $dark-1;
+  font: 400 1em/1 $font-roboto;
+  background: $gray-1;
+  box-sizing: border-box;
+  -webkit-font-smoothing: subpixel-antialiased; // 4
+}
+
+a {
+  cursor: pointer;
+}
+
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+//   border-spacing: 0;
+// }

@@ -7,14 +7,9 @@ const state = {
   Router: {},
 
   // comments
+  clientName: 'anonymous',
   clientID: null,
-  comments: [
-    {
-      clientID: null,
-      comment: 'Welcome to the almost realtime comment system!',
-      name: 'Notice'
-    }
-  ]
+  comments: []
 }
 
 const actions = {

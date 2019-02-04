@@ -1,9 +1,21 @@
 
+//
 @import '../env';
-// @import './shared/styles/stock';
-// @import './shared/styles/home';
 
+//
+@import './shared/styles/colors';
+@import './shared/styles/fonts';
+
+//
+@import './shared/styles/stock';
+
+//
+@import './styles/home';
+
+//
 .app {
+  padding: 56px 0 0;
+
   &.-fade {
     display: flex;
     pointer-events: none;

@@ -1,0 +1,22 @@
+
+$white: #fff;
+$black: #000;
+
+$red: rgb(223, 63, 55);
+$yellow: rgb(247, 159, 23);
+$green: rgb(127, 191, 63);
+$blue: rgb(31, 159, 199);
+
+$gray-1: rgb(239, 243, 247);
+$gray-2: rgb(229, 235, 239);
+$gray-3: rgb(203, 217, 223);
+$gray-4: rgb(151, 171, 183);
+$gray-5: rgb(95, 111, 127);
+
+$dark-1: rgb(31, 33, 35);
+$dark-2: rgb(23, 25, 27);
+$dark-3: rgb(15, 17, 19);
+
+$mid-1: mix($gray-5, $dark-1, 75%);
+$mid-2: mix($gray-5, $dark-1, 50%);
+$mid-3: mix($gray-5, $dark-1, 25%);
