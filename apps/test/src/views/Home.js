@@ -45,7 +45,7 @@ const NameInput = (state, actions) => {
 
 const Home = (state, actions) => {
   return div({ class: 'home' }, [
-    h1('Almost Realtime Comments'),
+    h1('Almost Realtime'),
     NameInput,
     Comments,
     MessageInput

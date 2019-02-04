@@ -18,7 +18,7 @@ const preloadFont = href => {
 }
 
 const Stub = data => {
-  const title = 'Almost Realtime Comments'
+  const title = 'Almost Realtime'
   const author = 'Dustin Dowell'
   const description = ''
   const keywords = ''
