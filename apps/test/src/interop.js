@@ -8,7 +8,7 @@ window.addEventListener('pushstate', () => RouterInit(state, main))
 window.addEventListener('popstate', () => RouterInit(state, main))
 
 //
-const source = new EventSource('http://localhost:8080/realtime') // eslint-disable-line
+const source = new EventSource('API/realtime') // eslint-disable-line
 
 source.onmessage = body => {
   const data = JSON.parse(body.data)

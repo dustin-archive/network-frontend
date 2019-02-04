@@ -10,12 +10,14 @@ const project = JSON.stringify(process.env.PROJECT)
 
 const production = {
   'console.log': 'void 0 && console.log', // 1
+  'API': 'https://almost-realtime-backend.herokuapp.com/',
   'DEVELOPMENT': null,
   'PRODUCTION': true,
   'PROJECT': project
 }
 
 const development = {
+  'API': 'http://localhost:8080',
   'DEVELOPMENT': true,
   'PRODUCTION': null,
   'PROJECT': project

@@ -9,7 +9,7 @@ const postComment = data => {
     })
   }
 
-  window.fetch('http://localhost:8080/postComment', options)
+  window.fetch('API/postComment', options)
     .then(res => res.json())
     .then(json => {
       console.log(json)

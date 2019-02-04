@@ -5,7 +5,7 @@ const fetchComments = main => {
     body: JSON.stringify({})
   }
 
-  window.fetch('http://localhost:8080/fetchComments', options)
+  window.fetch('API/fetchComments', options)
     .then(res => res.json())
     .then(json => {
       console.log(json)
