@@ -4,8 +4,7 @@ const postComment = data => {
     method: 'POST',
     body: JSON.stringify({
       clientID: data.clientID,
-      comment: data.comment,
-      name: data.name
+      comment: data.comment
     })
   }
 

@@ -36,7 +36,7 @@ source.onmessage = body => {
   }
 
   if (data.type === 'comment') {
-    main.appendComments({ commentList: [data.comment] })
+    main.appendComment({ comment: data.comment })
   }
 
   //

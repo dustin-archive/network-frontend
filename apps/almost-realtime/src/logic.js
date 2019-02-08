@@ -24,9 +24,16 @@ const actions = {
       clientList: state.clientList.concat(data.clientList)
     }
   },
-  appendComments: data => state => {
+  // appendComments: data => state => {
+  //   return {
+  //     commentList: state.commentList.concat(data.commentList)
+  //   }
+  // },
+  appendComment: data => state => {
+    state.commentList.push(data.comment)
+
     return {
-      commentList: state.commentList.concat(data.commentList)
+      commentList: state.commentList
     }
   },
 

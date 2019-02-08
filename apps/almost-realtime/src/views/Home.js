@@ -9,8 +9,8 @@ const Comments = (state, actions) => {
   const result = []
 
   for (let i = 0; i < viewport.length; i++) {
-    const { comment, name } = viewport[i]
-    const item = div(name + ': ' + comment)
+    const { message, name } = viewport[i]
+    const item = div(name + ': ' + message)
     result.push(item)
   }
 
@@ -22,8 +22,10 @@ const MessageInput = state => {
     if (e.key === 'Enter') {
       postComment({
         clientID: state.clientID,
-        comment: e.target.value,
-        name: state.clientName
+        comment: {
+          message: e.target.value,
+          name: state.clientName
+        }
       })
 
       e.target.value = ''
