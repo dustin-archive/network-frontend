@@ -4,8 +4,8 @@ import { div, h1, input } from '@hyperapp/html'
 import postComment from '../requests/postComment'
 
 const Comments = (state, actions) => {
-  const { comments } = state
-  const viewport = comments.slice(comments.length - 32)
+  const { commentList } = state
+  const viewport = commentList.slice(commentList.length - 32)
   const result = []
 
   for (let i = 0; i < viewport.length; i++) {
@@ -51,7 +51,7 @@ const ClientList = state => {
     const client = clientList[i]
 
     result.push(
-      div(client.id + ' ' + client.name)
+      div(client.name || client.id)
     )
   }
 

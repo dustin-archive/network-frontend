@@ -15,17 +15,41 @@ source.onmessage = body => {
 
   console.log(data)
 
+  //
+  // client
+  //
+
+  if (data.type === 'clientList') {
+    main.update({ clientList: data.clientList })
+  }
+
   if (data.type === 'client') {
     main.appendClients({ clientList: [data.client] })
   }
 
-  if (data.type === 'comment') {
-    main.appendComments({ comments: [data.comment] })
+  //
+  // comment
+  //
+
+  if (data.type === 'commentList') {
+    main.update({ commentList: data.commentList })
   }
+
+  if (data.type === 'comment') {
+    main.appendComments({ commentList: [data.comment] })
+  }
+
+  //
+  // connect
+  //
 
   if (data.type === 'connect') {
     main.update({ clientID: data.clientID })
   }
+
+  //
+  // timeout
+  //
 
   if (data.type === 'timeout') {
     main.update({ timeout: true })

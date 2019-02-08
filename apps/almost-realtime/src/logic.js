@@ -6,15 +6,13 @@ const state = {
   // stores
   Router: {},
 
-  // comments
-  clientList: [
-    { id: '123', name: 'server' },
-    { id: '123', name: 'server' },
-    { id: '123', name: 'server' }
-  ],
-  clientName: 'anonymous',
+  // client
   clientID: null,
-  comments: []
+  clientList: [],
+  clientName: 'anonymous',
+
+  // comment
+  commentList: []
 }
 
 const actions = {
@@ -22,17 +20,13 @@ const actions = {
   Router,
 
   appendClients: data => state => {
-    console.log(state.clientList.concat(data.clientList))
-
     return {
-      comments: state.clientList.concat(data.clientList)
+      clientList: state.clientList.concat(data.clientList)
     }
   },
   appendComments: data => state => {
-    console.log(state.comments.concat(data.comments))
-
     return {
-      comments: state.comments.concat(data.comments)
+      commentList: state.commentList.concat(data.commentList)
     }
   },
 
