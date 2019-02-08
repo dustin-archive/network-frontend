@@ -6,21 +6,27 @@ const state = {
   // stores
   Router: {},
 
-  // comments
-  clientName: 'anonymous',
+  // client
   clientID: null,
-  comments: []
+  clientList: [],
+  clientName: 'anonymous',
+
+  // comment
+  commentList: []
 }
 
 const actions = {
   // stores
   Router,
 
-  appendComments: data => state => {
-    console.log(state.comments.concat(data.comments))
-
+  appendClients: data => state => {
     return {
-      comments: state.comments.concat(data.comments)
+      clientList: state.clientList.concat(data.clientList)
+    }
+  },
+  appendComments: data => state => {
+    return {
+      commentList: state.commentList.concat(data.commentList)
     }
   },
 

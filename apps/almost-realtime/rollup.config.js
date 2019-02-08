@@ -17,7 +17,7 @@ const production = {
 }
 
 const development = {
-  'API': 'http://localhost:8080',
+  'API': 'http://localhost:3000',
   'DEVELOPMENT': true,
   'PRODUCTION': null,
   'PROJECT': project

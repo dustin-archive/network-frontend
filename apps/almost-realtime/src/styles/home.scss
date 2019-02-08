@@ -9,6 +9,26 @@
   background: $white;
 }
 
+.home-list {
+  height: 100%;
+  padding: 12px 18px;
+  border: solid 1px $gray-2;
+  border-right-width: 0;
+  border-bottom-width: 2px;
+  border-radius: 6px 0 0 6px;
+  background: $white;
+}
+
+.home-main {
+  display: flex;
+
+  div {
+    &:last-child {
+      flex: 1;
+    }
+  }
+}
+
 .home {
   max-width: 480px;
   margin: auto;
@@ -31,11 +51,11 @@
 
     &:last-of-type {
       border-bottom-width: 2px;
-      border-radius: 0 0 6px 6px;
+      border-radius: 0 0 6px;
     }
 
     &:first-of-type {
-      border-radius: 6px 6px 0 0;
+      border-radius: 0 6px 0 0;
     }
 
     &::placeholder {

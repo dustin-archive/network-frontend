@@ -4,8 +4,8 @@ import { div, h1, input } from '@hyperapp/html'
 import postComment from '../requests/postComment'
 
 const Comments = (state, actions) => {
-  const { comments } = state
-  const viewport = comments.slice(comments.length - 32)
+  const { commentList } = state
+  const viewport = commentList.slice(commentList.length - 32)
   const result = []
 
   for (let i = 0; i < viewport.length; i++) {
@@ -43,12 +43,34 @@ const NameInput = (state, actions) => {
   return input({ placeholder: 'Name', onkeyup, type: 'text' })
 }
 
+const ClientList = state => {
+  const clientList = state.clientList
+  const result = []
+
+  for (let i = 0; i < clientList.length; i++) {
+    const client = clientList[i]
+
+    result.push(
+      div(client.name || client.id)
+    )
+  }
+
+  return div({ class: 'home-list' }, result)
+}
+
 const Home = (state, actions) => {
   return div({ class: 'home' }, [
     h1('Almost Realtime'),
-    NameInput,
-    Comments,
-    MessageInput
+    div({ class: 'home-main' }, [
+      div([
+        ClientList
+      ]),
+      div([
+        NameInput,
+        Comments,
+        MessageInput
+      ])
+    ])
   ])
 }
 
