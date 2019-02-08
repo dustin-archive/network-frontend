@@ -15,6 +15,10 @@ source.onmessage = body => {
 
   console.log(data)
 
+  if (data.type === 'client') {
+    main.appendClients({ clientList: [data.client] })
+  }
+
   if (data.type === 'comment') {
     main.appendComments({ comments: [data.comment] })
   }

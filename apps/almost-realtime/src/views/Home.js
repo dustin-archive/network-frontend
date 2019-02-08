@@ -43,12 +43,34 @@ const NameInput = (state, actions) => {
   return input({ placeholder: 'Name', onkeyup, type: 'text' })
 }
 
+const ClientList = state => {
+  const clientList = state.clientList
+  const result = []
+
+  for (let i = 0; i < clientList.length; i++) {
+    const client = clientList[i]
+
+    result.push(
+      div(client.id + ' ' + client.name)
+    )
+  }
+
+  return div({ class: 'home-list' }, result)
+}
+
 const Home = (state, actions) => {
   return div({ class: 'home' }, [
     h1('Almost Realtime'),
-    NameInput,
-    Comments,
-    MessageInput
+    div({ class: 'home-main' }, [
+      div([
+        ClientList
+      ]),
+      div([
+        NameInput,
+        Comments,
+        MessageInput
+      ])
+    ])
   ])
 }
 
