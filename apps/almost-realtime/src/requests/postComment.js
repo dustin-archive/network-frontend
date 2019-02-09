@@ -8,10 +8,12 @@ const postComment = data => {
     })
   }
 
-  window.fetch('API/postComment', options)
+  return window.fetch('API/postComment', options)
     .then(res => res.json())
-    .then(json => {
-      console.log(json)
+    .then(json => json)
+    .catch(error => {
+      console.error(error)
+      return error
     })
 }
 

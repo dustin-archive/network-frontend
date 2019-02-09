@@ -2,9 +2,14 @@
 import { update } from './shared/actions'
 import Router from './shared/stores/Router'
 
+import postComment from './requests/postComment'
+
 const state = {
   // stores
   Router: {},
+
+  // toast
+  toastList: [],
 
   // client
   clientID: null,
@@ -16,19 +21,28 @@ const state = {
 }
 
 const actions = {
+  //
   // stores
+  //
+
   Router,
 
-  appendClients: data => state => {
-    return {
-      clientList: state.clientList.concat(data.clientList)
-    }
-  },
-  // appendComments: data => state => {
+  //
+  // toast
+  //
+
+  // appendToast: data => {
+  //   state.toastList.push(data.toast)
+  //
   //   return {
-  //     commentList: state.commentList.concat(data.commentList)
+  //     toastList: state.toastList
   //   }
   // },
+
+  //
+  // comment
+  //
+
   appendComment: data => state => {
     state.commentList.push(data.comment)
 
@@ -36,8 +50,31 @@ const actions = {
       commentList: state.commentList
     }
   },
+  postComment: data => async (state, actions) => {
+    const { toastList } = state
 
+    try {
+      toastList.push(await postComment(data))
+    } catch (error) {
+      toastList.push({ message: error, status: false })
+    }
+
+    return { toastList }
+  },
+
+  //
+  // client
+  //
+
+  appendClients: data => state => {
+    return {
+      clientList: state.clientList.concat(data.clientList)
+    }
+  },
+
+  //
   // utilities
+  //
   update
 }
 

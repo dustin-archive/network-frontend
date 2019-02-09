@@ -1,26 +1,10 @@
 
 import { div, h1, input } from '@hyperapp/html'
 
-import postComment from '../requests/postComment'
-
-const Comments = (state, actions) => {
-  const { commentList } = state
-  const viewport = commentList.slice(commentList.length - 32)
-  const result = []
-
-  for (let i = 0; i < viewport.length; i++) {
-    const { message, name } = viewport[i]
-    const item = div(name + ': ' + message)
-    result.push(item)
-  }
-
-  return div({ class: 'home-comments' }, result)
-}
-
-const MessageInput = state => {
+const MessageInput = () => (state, actions) => {
   const onkeydown = e => {
     if (e.key === 'Enter') {
-      postComment({
+      actions.postComment({
         clientID: state.clientID,
         comment: {
           message: e.target.value,
@@ -35,7 +19,21 @@ const MessageInput = state => {
   return input({ placeholder: 'Message', onkeydown, type: 'text' })
 }
 
-const NameInput = (state, actions) => {
+const Comments = () => (state, actions) => {
+  const { commentList } = state
+  const viewport = commentList.slice(commentList.length - 32)
+  const result = []
+
+  for (let i = 0; i < viewport.length; i++) {
+    const { message, name } = viewport[i]
+    const item = div(name + ': ' + message)
+    result.push(item)
+  }
+
+  return div({ class: 'home-comment' }, result)
+}
+
+const NameInput = () => (state, actions) => {
   const onkeyup = e => {
     actions.update({
       clientName: e.target.value
@@ -45,7 +43,7 @@ const NameInput = (state, actions) => {
   return input({ placeholder: 'Name', onkeyup, type: 'text' })
 }
 
-const ClientList = state => {
+const ClientList = () => state => {
   const clientList = state.clientList
   const result = []
 
@@ -57,18 +55,18 @@ const ClientList = state => {
     )
   }
 
-  return div({ class: 'home-list' }, result)
+  return div({ class: 'home-client' }, result)
 }
 
-const Home = (state, actions) => {
+const Home = () => (state, actions) => {
   return div({ class: 'home' }, [
     h1('Almost Realtime'),
     div({ class: 'home-main' }, [
       div([
-        ClientList
+        ClientList,
+        NameInput
       ]),
       div([
-        NameInput,
         Comments,
         MessageInput
       ])

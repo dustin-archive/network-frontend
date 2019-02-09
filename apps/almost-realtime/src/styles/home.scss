@@ -1,22 +1,21 @@
 
-.home-comments {
+%home-top {
   min-height: 512px;
   padding: 12px 18px;
   border: solid 1px $gray-2;
-  border-top-width: 0;
-  border-bottom-width: 0;
-  font: 14px/16px $font-roboto;
   background: $white;
 }
 
-.home-list {
-  height: 100%;
-  padding: 12px 18px;
-  border: solid 1px $gray-2;
-  border-right-width: 0;
-  border-bottom-width: 2px;
-  border-radius: 6px 0 0 6px;
-  background: $white;
+.home-comment {
+  @extend %home-top;
+  border-left: 0;
+  border-radius: 0 6px 0 0;
+  font: 14px/16px $font-roboto;
+}
+
+.home-client {
+  @extend %home-top;
+  border-radius: 6px 0 0;
 }
 
 .home-main {
@@ -47,15 +46,17 @@
     height: 44px;
     padding: 0 0 0 18px;
     border: solid 1px $gray-2;
+    border-top: 0;
+    border-bottom-width: 2px;
     outline: none;
 
-    &:last-of-type {
-      border-bottom-width: 2px;
+    &[placeholder='Message'] {
+      border-left: 0;
       border-radius: 0 0 6px;
     }
 
-    &:first-of-type {
-      border-radius: 0 6px 0 0;
+    &[placeholder='Name'] {
+      border-radius: 0 0 0 6px;
     }
 
     &::placeholder {

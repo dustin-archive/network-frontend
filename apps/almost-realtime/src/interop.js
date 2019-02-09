@@ -20,11 +20,11 @@ source.onmessage = body => {
   //
 
   if (data.type === 'clientList') {
-    main.update({ clientList: data.clientList })
+    return main.update({ clientList: data.clientList })
   }
 
   if (data.type === 'client') {
-    main.appendClients({ clientList: [data.client] })
+    return main.appendClients({ clientList: [data.client] })
   }
 
   //
@@ -32,11 +32,11 @@ source.onmessage = body => {
   //
 
   if (data.type === 'commentList') {
-    main.update({ commentList: data.commentList })
+    return main.update({ commentList: data.commentList })
   }
 
   if (data.type === 'comment') {
-    main.appendComment({ comment: data.comment })
+    return main.appendComment({ comment: data.comment })
   }
 
   //
@@ -44,7 +44,7 @@ source.onmessage = body => {
   //
 
   if (data.type === 'connect') {
-    main.update({ clientID: data.clientID })
+    return main.update({ clientID: data.clientID })
   }
 
   //
@@ -52,7 +52,7 @@ source.onmessage = body => {
   //
 
   if (data.type === 'timeout') {
-    main.update({ timeout: true })
     source.close()
+    return main.update({ timeout: true })
   }
 }
