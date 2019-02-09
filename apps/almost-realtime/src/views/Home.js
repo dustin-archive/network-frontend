@@ -19,18 +19,20 @@ const MessageInput = () => (state, actions) => {
   return input({ placeholder: 'Message', onkeydown, type: 'text' })
 }
 
-const Comments = () => (state, actions) => {
+const CommentList = () => (state, actions) => {
   const { commentList } = state
-  const viewport = commentList.slice(commentList.length - 32)
   const result = []
 
-  for (let i = 0; i < viewport.length; i++) {
-    const { message, name } = viewport[i]
-    const item = div(name + ': ' + message)
-    result.push(item)
+  for (let i = 0; i < commentList.length; i++) {
+    const { message, name } = commentList[i]
+    result.push(div(name + ': ' + message))
   }
 
-  return div({ class: 'home-comment' }, result)
+  const onupdate = el => {
+    el.scrollTop = el.scrollHeight - el.clientHeight
+  }
+
+  return div({ class: 'home-comment', onupdate }, result)
 }
 
 const NameInput = () => (state, actions) => {
@@ -67,7 +69,7 @@ const Home = () => (state, actions) => {
         NameInput
       ]),
       div([
-        Comments,
+        CommentList,
         MessageInput
       ])
     ])

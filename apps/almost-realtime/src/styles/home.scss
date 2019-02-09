@@ -1,6 +1,6 @@
 
 %home-top {
-  min-height: 512px;
+  height: 512px;
   padding: 12px 18px;
   border: solid 1px $gray-2;
   background: $white;
@@ -8,9 +8,13 @@
 
 .home-comment {
   @extend %home-top;
+  width: 320px;
   border-left: 0;
   border-radius: 0 6px 0 0;
   font: 14px/16px $font-roboto;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  word-wrap: break-word;
 }
 
 .home-client {
@@ -22,7 +26,7 @@
   display: flex;
 
   div {
-    &:last-child {
+    &:first-child {
       flex: 1;
     }
   }

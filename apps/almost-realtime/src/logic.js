@@ -1,5 +1,5 @@
 
-import { update } from './shared/actions'
+import utilities from './shared/utilities'
 import Router from './shared/stores/Router'
 
 import postComment from './requests/postComment'
@@ -21,6 +21,8 @@ const state = {
 }
 
 const actions = {
+  ...utilities,
+
   //
   // stores
   //
@@ -31,35 +33,51 @@ const actions = {
   // toast
   //
 
-  // appendToast: data => {
-  //   state.toastList.push(data.toast)
-  //
-  //   return {
-  //     toastList: state.toastList
-  //   }
-  // },
+  // data = { toast }
+  appendToast: data => state => {
+    state.toastList.push(data.toast)
+
+    return {
+      toastList: state.toastList
+    }
+  },
 
   //
   // comment
   //
 
+  // data = { comment }
   appendComment: data => state => {
-    state.commentList.push(data.comment)
+    const { commentList } = state
 
-    return {
-      commentList: state.commentList
+    if (commentList.length > 32) {
+      commentList.shift()
     }
+
+    commentList.push(data.comment)
+
+    return { commentList }
   },
-  postComment: data => async (state, actions) => {
-    const { toastList } = state
 
-    try {
-      toastList.push(await postComment(data))
-    } catch (error) {
-      toastList.push({ message: error, status: false })
+  // data = {  }
+  postComment: data => (s, actions) => {
+    const ok = json => {
+      actions.appendToast({ toast: json })
     }
 
-    return { toastList }
+    const notOK = error => {
+      actions.appendToast({
+        toast: { message: error, status: false }
+      })
+    }
+
+    const done = () => {
+      return { fetching: false }
+    }
+
+    postComment(data).then(ok, notOK).then(done)
+
+    return { fetching: true }
   },
 
   //
@@ -70,12 +88,7 @@ const actions = {
     return {
       clientList: state.clientList.concat(data.clientList)
     }
-  },
-
-  //
-  // utilities
-  //
-  update
+  }
 }
 
 export { state, actions }
