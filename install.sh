@@ -1,5 +1,5 @@
 
-npm i -D \
+npm i \
   @babel/core \
   @babel/plugin-proposal-object-rest-spread \
   @babel/plugin-transform-arrow-functions \
@@ -12,4 +12,6 @@ npm i -D \
   @babel/plugin-transform-shorthand-properties \
   @babel/plugin-transform-spread \
   @babel/plugin-transform-template-literals \
+
+npm i -D \
   serve-handler \
