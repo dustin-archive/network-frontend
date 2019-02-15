@@ -1,13 +1,13 @@
 
-const clients = {}
-let id = 0
-
-// ...
-
+const { createServer } = require('http')
+const { randomBytes } = require('crypto')
+const { spawn } = require('child_process')
+const { watch } = require('fs')
 const handler = require('serve-handler')
-const http = require('http')
 
-const server = http.createServer((request, response) => {
+const clientMap = new Map()
+
+const server = createServer((request, response) => {
   if (request.url !== '/reload') {
     return handler(request, response, {
       public: 'public',
@@ -17,42 +17,56 @@ const server = http.createServer((request, response) => {
     })
   }
 
+  response.setHeader('Cache-Control', 'no-cache, no-transform')
   response.setHeader('Content-Type', 'text/event-stream')
+  response.setHeader('Keep-Alive', 'timeout=3600')
+  response.setHeader('Transfer-Encoding', 'identity')
 
-  clients[id] = response
-  request.on('close', () => { delete clients[id] })
-  ++id
+  const clientID = randomBytes(6).toString('hex')
+
+  clientMap.set(clientID, response)
+
+  const connectMessage = JSON.stringify({
+    status: true,
+    type: 'connect'
+  })
+
+  response.write('data:' + connectMessage + '\n\n')
+
+  request.on('aborted', () => {
+    clientMap.delete(clientID)
+  })
 })
-
-server.listen(3001, () => {
-  console.log('\nRunning at http://localhost:3001')
-})
-
-// ...
-
-const spawn = require('child_process').spawn
-const fs = require('fs')
 
 const execute = flag => {
   const args = process.argv[process.argv.indexOf(flag) + 1].split(' ')
   const command = spawn(args[0], args.slice(1), { stdio: 'inherit' })
 
   command.on('close', () => {
-    for (let id in clients) {
-      clients[id].write('data\n\n')
+    for (let [key] of clientMap) {
+      const reloadMessage = JSON.stringify({
+        status: true,
+        type: 'reload'
+      })
+
+      clientMap.get(key).write('data:' + reloadMessage + '\n\n')
     }
   })
 }
 
 const action = (e, filename) => {
   if (filename.endsWith('.scss')) {
-    execute('--css')
+    return execute('--css')
   }
 
   if (filename.endsWith('.js')) {
-    execute('--js')
+    return execute('--js')
   }
 }
 
-fs.watch('src', { recursive: true }, action)
-fs.watch('src/shared', { recursive: true }, action)
+watch('src', { recursive: true }, action)
+watch('src/shared', { recursive: true }, action)
+
+server.listen(3001, () => {
+  console.log('\nRunning at http://localhost:3001')
+})

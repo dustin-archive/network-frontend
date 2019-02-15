@@ -8,9 +8,9 @@ window.addEventListener('pushstate', () => RouterInit(state, main))
 window.addEventListener('popstate', () => RouterInit(state, main))
 
 //
-const source = new EventSource('API/realtime') // eslint-disable-line
+const realtimeSource = new EventSource('API/realtime') // eslint-disable-line
 
-source.onmessage = body => {
+realtimeSource.onmessage = body => {
   const data = JSON.parse(body.data)
 
   console.log(data)
@@ -44,6 +44,7 @@ source.onmessage = body => {
   //
 
   if (data.type === 'connect') {
+    console.log('Successfully connected to realtime')
     return main.update({ clientID: data.clientID })
   }
 
@@ -52,7 +53,7 @@ source.onmessage = body => {
   //
 
   if (data.type === 'timeout') {
-    source.close()
+    realtimeSource.close()
     return main.update({ timeout: true })
   }
 }
