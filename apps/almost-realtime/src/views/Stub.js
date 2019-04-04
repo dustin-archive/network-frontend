@@ -1,12 +1,9 @@
 
 import { h } from 'hyperapp'
 
-//
-// ... Metadata
-// =============================================================================
-// 1. NOTE: lighthouse complains about 414 (iphones) so use 412 (nexus)
-// 2. NOTE: lighthouse complains about maximum-scale=1 and user-scalable=0, but
-// we need these for a responsive scaling
+// const dnsPrefetch = href => {
+//   return h('link', { rel: 'dns-prefetch', href })
+// }
 
 const preloadFont = href => {
   const rel = 'preload'
@@ -39,9 +36,9 @@ const Stub = data => {
       h('meta', { name: 'description', content: description }),
       h('meta', { name: 'keywords', content: keywords }),
       h('meta', { id: 'viewport', name: 'viewport' }),
-      h('link', { rel: 'icon', type: 'image/png', href: 'favicon.png' }),
-      preloadFont('/googlefonts/roboto-v18-latin-regular.woff2'),
-      preloadFont('/googlefonts/robotocondensed-v16-latin-regular.woff2'),
+      h('link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }),
+      preloadFont('/inter-3.3/Inter-Medium.woff2'),
+      preloadFont('/inter-3.3/Inter-Regular.woff2'),
       styles
     ]),
     h('body', {}, [

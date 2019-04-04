@@ -10,7 +10,6 @@ const postComment = data => {
 
   return window.fetch('API/postComment', options)
     .then(res => res.json())
-    .then(json => json)
     .catch(error => {
       console.error(error)
       return error

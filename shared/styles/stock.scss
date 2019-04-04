@@ -4,19 +4,27 @@
 // =============================================================================
 
 @font-face {
-  font-family: 'Roboto';
-  src:
-  local('Roboto'),
-  local('Roboto-Regular'),
-  url('/googlefonts/roboto-v18-latin-regular.woff2') format('woff2');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/inter-3.3/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Roboto Condensed';
-  src:
-  local('Roboto Condensed'),
-  local('Roboto-Condensed'),
-  url('/googlefonts/robotocondensed-v16-latin-regular.woff2') format('woff2');
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/inter-3.3/Inter-Medium.woff2') format('woff2');
+}
+
+//
+// # Keyframes
+// =============================================================================
+
+@keyframes fadeout {
+  100% {
+    opacity: 0;
+  }
 }
 
 //
@@ -50,18 +58,23 @@ html {
 
 body {
   color: $dark-1;
-  font: 400 1em/1 $font-roboto;
-  background: $gray-1;
+  font: 400 1em/1 $font-inter;
   box-sizing: border-box;
   -webkit-font-smoothing: subpixel-antialiased; // 4
 }
 
-a {
-  cursor: pointer;
-}
+.app {
+  &.-fade {
+    display: flex;
+    pointer-events: none;
 
-// table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   border-spacing: 0;
-// }
+    > div {
+      position: absolute;
+      width: 100%;
+
+      &:last-child {
+        animation: fadeout 0.25s forwards;
+      }
+    }
+  }
+}

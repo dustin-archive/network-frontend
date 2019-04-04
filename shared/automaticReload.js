@@ -3,14 +3,20 @@ if (DEVELOPMENT) {
   const reloadSource = new EventSource('/reload') // eslint-disable-line
 
   reloadSource.onmessage = body => {
-    const data = JSON.parse(body.data)
+    console.log(body)
 
-    console.log(data)
-
-    if (data.type === 'connect') {
-      return console.log('Successfully connected to automatic reload')
+    if (body.data === 'connect') {
+      return console.log('Automatic Reload: connected')
     }
 
-    window.location.reload()
+    if (body.data === 'reload') {
+      window.location.reload()
+    }
+
+    if (body.data === void 0) {
+      return console.log('Automatic Reload: empty message')
+    }
+
+    console.log('Automatic Reload: impossible')
   }
 }

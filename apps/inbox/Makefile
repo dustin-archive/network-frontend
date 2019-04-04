@@ -17,7 +17,7 @@ all: prep css js minify html
 	gzip -k -n -9 public/index.html
 
 start: prep css js html
-	node ../../scripts/server --css "$(MAKE) css" --js "$(MAKE) js"
+	serve --css "$(MAKE) css" --js "$(MAKE) js"
 
 prep:
 	rm -rf public

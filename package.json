@@ -4,20 +4,20 @@
   "author": "Dustin Dowell <dustindowell2@gmail.com>",
   "main": "index.js",
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "@babel/plugin-transform-arrow-functions": "^7.2.0",
     "@babel/plugin-transform-block-scoped-functions": "^7.2.0",
-    "@babel/plugin-transform-block-scoping": "^7.2.0",
+    "@babel/plugin-transform-block-scoping": "^7.3.4",
     "@babel/plugin-transform-computed-properties": "^7.2.0",
-    "@babel/plugin-transform-destructuring": "^7.2.0",
+    "@babel/plugin-transform-destructuring": "^7.3.2",
     "@babel/plugin-transform-function-name": "^7.2.0",
-    "@babel/plugin-transform-parameters": "^7.2.0",
+    "@babel/plugin-transform-parameters": "^7.3.3",
     "@babel/plugin-transform-shorthand-properties": "^7.2.0",
     "@babel/plugin-transform-spread": "^7.2.2",
-    "@babel/plugin-transform-template-literals": "^7.2.0",
+    "@babel/plugin-transform-template-literals": "^7.2.0"
   },
   "devDependencies": {
-    "serve-handler": "^5.0.7"
+    "serve-handler": "^5.0.8"
   }
 }

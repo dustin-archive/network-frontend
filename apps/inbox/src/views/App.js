@@ -1,12 +1,11 @@
 
-// import { a, div } from '@hyperapp/html'
-import { a, div } from 'htags'
+import { a, div } from 'h-tags'
 
 import routes from '../routes'
 
 const NotFound = (state, actions) => {
   return div({ class: 'app-404' }, [
-    div('The page "' + state.Router.path + '" wasn\'t found.'),
+    div('The page "' + state.router.path + '" wasn\'t found.'),
     a({ href: '/' }, 'Go Home')
   ])
 }
@@ -28,7 +27,7 @@ const Route = data => state => {
 let memo = div('')
 
 const App = state => {
-  const route = Route({ path: state.Router.path })
+  const route = Route({ path: state.router.path })
 
   if (state.animate) {
     return div({ class: 'app -fade' }, [

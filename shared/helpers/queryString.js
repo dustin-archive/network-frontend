@@ -2,14 +2,25 @@
 // NOTE: experiment with regex replace instead of split in the decode function
 // regex replace can include delimters in the result
 
+// const decode = query => {
+//   query = query.slice(1).split(/[&=]/g)
+//
+//   const result = {}
+//
+//   for (let i = 0; i < query.length; i += 2) {
+//     result[query[i]] = query[i + 1]
+//   }
+//
+//   return result
+// }
+
 const decode = query => {
-  query = query.slice(1).split('&')
+  query = query.slice(1).split(/[&=]/g)
 
   const result = {}
 
-  for (let i = 0, pair; i < query.length; i++) {
-    pair = query[i].split('=')
-    result[pair[0]] = pair[1]
+  for (let i = 0; i < query.length; i += 2) {
+    result[query[i]] = query[i + 1]
   }
 
   return result

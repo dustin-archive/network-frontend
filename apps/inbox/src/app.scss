@@ -11,3 +11,15 @@
 // views
 @import './styles/chat';
 @import './styles/home';
+
+h1 {
+  font-size: 48px;
+}
+
+a {
+  display: inline-block;
+  margin: 6px;
+  padding: 12px 24px;
+  color: white;
+  background: dodgerblue;
+}

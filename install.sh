@@ -1,4 +1,8 @@
 
+openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
+  -keyout key.pem \
+  -out cert.pem
+
 npm i \
   @babel/core \
   @babel/plugin-proposal-object-rest-spread \
@@ -15,3 +19,5 @@ npm i \
 
 npm i -D \
   serve-handler \
+
+(cd apps/almost-realtime && sh install.sh)
