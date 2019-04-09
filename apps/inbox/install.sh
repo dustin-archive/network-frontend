@@ -1,6 +1,7 @@
 
 npm i \
-  hyperapp
+  hyperapp \
+  # github:whaaaley/tags
 
 npm i -D \
   @hyperapp/render \
@@ -12,6 +13,3 @@ npm i -D \
   rollup-plugin-node-resolve \
   rollup-plugin-replace \
   uglify-js
-
-npm link h-tags
-npm link serve

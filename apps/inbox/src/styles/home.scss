@@ -1,13 +1,50 @@
 
-.home {
-  max-width: 480px;
-  margin: auto;
-  color: $dark-1;
+.mail-item {
+  height: 48px;
 
-  h1 {
-    padding: 0 0 12px;
-    color: $gray-5;
-    font: bold 18px/1 $font-inter;
-    text-align: center;
+  & + & {
+    border-top: solid 1px $gray-1;
   }
+}
+
+.mail-label {
+  padding: 12px;
+  text-transform: uppercase;
+}
+
+.mail-main {
+  border: solid 1px $gray-2;
+  border-radius: 4px;
+  background: $white;
+  box-shadow: 0 1px $gray-2; // solid
+}
+
+.mail {
+  padding: 24px;
+}
+
+// ========
+
+.bar-main {
+  display: flex;
+  // max-width: 960px;
+  // margin: auto;
+}
+
+.bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  // color: $white;
+  // font: 16px/56px $font-inter;
+  background: $aqua-1;
+}
+
+// ========
+
+.home {
+  height: 100vh;
+  padding: (54px + 24px) 0 0;
+  background: $gray-1;
 }

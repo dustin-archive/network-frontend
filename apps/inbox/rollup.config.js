@@ -12,20 +12,18 @@ const production = {
   'console.log': 'void 0 && console.log', // 1
   'API': '',
   'DEVELOPMENT': null,
-  'PRODUCTION': true,
   'PROJECT': project
 }
 
 const development = {
   'API': '',
   'DEVELOPMENT': true,
-  'PRODUCTION': null,
   'PROJECT': project
 }
 
 export default {
   plugins: [
-    replace(process.env.NODE_ENV === 'production' ? production : development),
-    resolve({ main: false }) // 2
+    replace(process.env.NODE_ENV === 'development' ? development : production),
+    resolve({ mainFields: ['module', 'main'] }) // 2
   ]
 }

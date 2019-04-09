@@ -1,7 +1,7 @@
 
-import { a, div } from 'h-tags'
-
+import tags from 'tags'
 import routes from '../routes'
+const { a, div } = tags
 
 const NotFound = (state, actions) => {
   return div({ class: 'app-404' }, [
@@ -21,10 +21,10 @@ const Route = data => state => {
     return NotFound
   }
 
-  return div(route.view)
+  return div({ class: 'app-view' }, route.view)
 }
 
-let memo = div('')
+let memo = div({ class: 'app-memo' })
 
 const App = state => {
   const route = Route({ path: state.router.path })

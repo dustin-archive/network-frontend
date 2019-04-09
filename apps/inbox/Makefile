@@ -7,7 +7,6 @@
 PATH := node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-all: NODE_ENV=production
 all: PROJECT=test
 
 start: NODE_ENV=development
@@ -39,4 +38,4 @@ minify:
 	cleancss -O2 public/app.css -o public/app.css --source-map --source-map-inline-sources
 
 html:
-	$(ENV) rollup src/index.js -f cjs -e fs -c | node > public/index.html
+	$(ENV) rollup src/prerender.js -f cjs -e fs -c | node > public/index.html

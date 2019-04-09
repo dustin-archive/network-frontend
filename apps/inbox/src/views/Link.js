@@ -1,5 +1,6 @@
 
-import { a } from 'h-tags'
+import tags from 'tags'
+const { a } = tags
 
 const protocols = ['http:', 'https:', 'file:', 'ftp:']
 
@@ -7,21 +8,23 @@ const Link = (attributes, children) => (state, actions) => {
   attributes.onclick = e => {
     e.preventDefault()
 
-    const href = attributes.href
-    const valid = protocols.includes(href.slice(0, href.indexOf('//')))
+    const to = attributes.to
+    const valid = protocols.includes(to.slice(0, to.indexOf('//')))
 
     if (valid) {
-      window.location.href = attributes.href
+      window.location.href = attributes.to
       return // stop execution
     }
 
     actions.route({
-      path: attributes.href,
+      path: attributes.to,
       query: attributes.query
     })
   }
 
+  attributes.href = attributes.to
   attributes.query = void 0
+  attributes.to = void 0
 
   return a(attributes, children)
 }

@@ -5,7 +5,7 @@ import { state } from './logic'
 import Stub from './views/Stub'
 
 const view = Stub({
-  titel: 'Inbox',
+  title: 'Inbox',
   author: 'Dustin Dowell',
   description: '',
   canonical: 'http://inbox.whaaaley.com/path',
