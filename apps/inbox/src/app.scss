@@ -2,11 +2,11 @@
 @import '../env';
 
 // variables
-@import './shared/styles/colors';
-@import './shared/styles/fonts';
+@import './lib/styles/colors';
+@import './lib/styles/fonts';
 
 // base
-@import './shared/styles/stock';
+@import './lib/styles/stock';
 
 // views
 @import './styles/chat';

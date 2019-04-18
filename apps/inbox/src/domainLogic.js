@@ -1,6 +1,6 @@
 
-import utilities from './shared/utilities'
-import { router } from './shared/stores/router2'
+import utilities from './lib/utilities'
+import router from './lib/modules/router'
 
 const state = {
   ...router.state

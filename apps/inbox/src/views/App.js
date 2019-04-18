@@ -1,42 +1,43 @@
 
-import tags from 'tags'
-import routes from '../routes'
-const { a, div } = tags
+import html from 'html'
+const { a, div, span } = html
 
-const NotFound = (state, actions) => {
+// data = void 0
+const NotFound = () => {
   return div({ class: 'app-404' }, [
-    div('The page "' + state.router.path + '" wasn\'t found.'),
-    a({ href: '/' }, 'Go Home')
+    div([
+      div([
+        span('404: '),
+        'The page could not be found.'
+      ]),
+      a({ href: '/' }, 'Go Home')
+    ])
   ])
 }
 
-const Route = data => state => {
-  if (state.loading) {
-    return 'Loading...'
-  }
-
-  const route = routes[data.path]
-
-  if (route == null) {
+// data = { route: String }
+const View = data => {
+  if (data.route == null) {
     return NotFound
   }
 
-  return div({ class: 'app-view' }, route.view)
+  return div(data.route.view)
 }
 
-let memo = div({ class: 'app-memo' })
+let memo = div('')
 
-const App = state => {
-  const route = Route({ path: state.router.path })
+// data = { fade: Boolean, route: String, view: Function }
+const App = data => {
+  const view = View({ route: data.route })
 
-  if (state.animate) {
+  if (data.fade) {
     return div({ class: 'app -fade' }, [
-      route,
+      view,
       memo
     ])
   }
 
-  memo = div({ class: 'app' }, route)
+  memo = div({ class: 'app' }, view)
 
   return memo
 }

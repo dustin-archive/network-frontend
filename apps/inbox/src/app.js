@@ -1,40 +1,49 @@
 
 'use strict'
 
-import './shared/dynamicViewport'
-import './shared/automaticReload'
-
 import { app } from 'hyperapp'
-import { state, actions } from './logic'
-import App from './views/App'
+import { state, actions } from './domainLogic'
 import routes from './routes'
 
-// Hyperapp
-const view = () => App
-const main = app(state, actions, view, document.body)
+import App from './views/App'
 
-// Router
-const routeHandler = (state, main) => {
-  const routerState = main.routerInit([
-    { source: /[0-9a-f]{24}$/i, destination: '/dp' }
-  ])
+import './lib/dynamicViewport'
+import './lib/automaticReload'
 
-  const route = routes[routerState.router.path]
+const view = state => App({
+  fade: state.animate,
+  route: routes[state.router.to]
+})
 
-  main.update({ animate: true })
+const appHandler = () => {
+  // Hyperapp
+  const main = app(state, actions, view, document.body)
 
-  const reset = e => {
-    main.update({ animate: null })
+  // Router
+  const routeHandler = () => {
+    const routerState = main.routerInit([
+      { source: /[0-9a-f]{24}$/i, destination: '/unit' }
+    ])
+
+    main.update({ animate: true })
+
+    const reset = e => {
+      main.update({ animate: null })
+    }
+
+    setTimeout(reset, 250)
+
+    const route = routes[routerState.router.to]
+
+    if (route && route.init) {
+      return route.init(state, main)
+    }
   }
 
-  setTimeout(reset, 250)
+  routeHandler()
 
-  if (route && route.init) {
-    return route.init(state, main)
-  }
+  window.addEventListener('pushstate', routeHandler)
+  window.addEventListener('popstate', routeHandler)
 }
 
-routeHandler(state, main)
-
-window.addEventListener('pushstate', () => routeHandler(state, main))
-window.addEventListener('popstate', () => routeHandler(state, main))
+window.addEventListener('DOMContentLoaded', appHandler)

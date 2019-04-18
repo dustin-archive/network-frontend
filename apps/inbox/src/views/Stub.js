@@ -1,28 +1,41 @@
 
-import tags from 'tags'
-const { html, link, meta, script, style, title } = tags
+import html from 'html'
+const { body, link, meta, script, style, title } = html
 
 const Stub = data => {
-  return html({ lang: 'en-US' }, [
+  const reference = [
+    link({ rel: 'stylesheet', href: data.style.href }),
+    script({ defer: true, src: data.script.src })
+  ]
+
+  const inline = [
+    style({ innerHTML: data.style.css }),
+    script({ innerHTML: data.script.js })
+  ]
+
+  return [
     meta({ charset: 'utf-8' }),
     title(data.title),
     meta({ name: 'author', content: data.author }),
     meta({ name: 'description', content: data.description }),
     meta({ id: 'viewport', name: 'viewport' }),
     link({ rel: 'icon', type: 'image/png', href: '/favicon.png' }),
-    DEVELOPMENT
-      ? [
-        link({ rel: 'stylesheet', href: data.style.href }),
-        script({ defer: true, src: data.script.src })
-      ]
-      : [
-        style({ innerHTML: data.style.css }),
-        script({ innerHTML: data.script.js })
-      ]
-  ])
+    DEVELOPMENT ? reference : inline,
+    body({ data: JSON.stringify(data.data) })
+  ]
 }
 
 export default Stub
+
+// DEVELOPMENT
+//   ? [
+//     link({ rel: 'stylesheet', href: data.style.href }),
+//     script({ defer: true, src: data.script.src })
+//   ]
+//   : [
+//     style({ innerHTML: data.style.css }),
+//     script({ innerHTML: data.script.js })
+//   ]
 
 // link({
 //   rel: 'preload',

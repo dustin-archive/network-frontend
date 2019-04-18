@@ -1,7 +1,7 @@
 
 import fs from 'fs'
 import { renderToString } from '@hyperapp/render/browser'
-import { state } from './logic'
+import { state } from './domainLogic'
 import Stub from './views/Stub'
 
 const view = Stub({

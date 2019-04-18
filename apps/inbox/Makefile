@@ -16,13 +16,13 @@ all: prep css js minify html
 	gzip -k -n -9 public/index.html
 
 start: prep css js html
-	serve --css "$(MAKE) css" --js "$(MAKE) js"
+	serve --scss "$(MAKE) css" --js "$(MAKE) js" --watch "src" --watch "src/lib"
 
 prep:
 	rm -rf public
 	mkdir public
 	cp -r src/_root/* public
-	cp -r src/shared/_root/* public
+	cp -r src/lib/_root/* public
 
 css:
 	echo

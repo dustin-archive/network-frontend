@@ -1,6 +1,6 @@
 
-import tags from 'tags'
-const { div } = tags
+import html from 'html'
+const { div } = html
 
 const Mail = () => (state, actions) =>
   div({ class: 'mail' }, [
