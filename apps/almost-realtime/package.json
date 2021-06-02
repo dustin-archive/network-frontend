@@ -4,11 +4,11 @@
   "author": "Dustin Dowell <dustindowell2@gmail.com>",
   "main": "index.js",
   "dependencies": {
-    "@hyperapp/html": "^1.1.1",
-    "hyperapp": "^1.2.9"
+    "@hyperapp/html": "1.1.1",
+    "hyperapp": "1.2.9"
   },
   "devDependencies": {
-    "@hyperapp/render": "^2.1.0",
+    "@hyperapp/render": "2.1.0",
     "autoprefixer": "^9.4.7",
     "clean-css-cli": "^4.2.1",
     "node-sass": "^4.11.0",
